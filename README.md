@@ -13,7 +13,11 @@ Open `index.html` locally, or serve the repository root with any static web serv
 1. **Decode:** 20 audience clues across demographics, psychographics, geographics and behavioural segmentation. Correct first answers earn 5 XP each.
 2. **Design:** five fictional briefs using Roblox, Spotify, Amazon, Google and YouTube. Select features within six credits, then build an audience → feature → benefit → client outcome connection. Up to 24 XP per brief.
 3. **Diagnose:** a performance clinic covering unit content A2. Eight fictional symptoms — slow first visit but fast second, fine on wi-fi but slow on mobile data, one 2.4 MB hero image, slow only at peak time, works in Chrome but not Safari — each answered by naming the dominant factor and then the evidence that would confirm it. 10 XP per correct first answer.
-4. **Challenge:** ten claims covering stereotypes, evidence, comparison, causality, performance, evaluation, search engine optimisation and creativity. 10 XP each.
+4. **Moderate:** ten extracts from a draft report, judged twice — a three-point verdict (*Sound* / *Half-way* / *Not yet*), then the reason. 4 XP for the verdict, 6 for the reason.
+
+   This round replaces the earlier Challenge round, which was gameable: the correct option was the longest in 10 of 10 claims and the sceptical one in 9 of 10, and since every claim was flawed, "challenge everything" scored 100% without reading anything. The rebuilt key is mixed — **three extracts are sound as written, four are half-way, three do not follow** — and option lengths are flattened so the correct reason is the longest in 3 of 10, which is chance. Measured strategy scores: always *Not yet* with the first listed reason 30/100, longest-option heuristic 30/100, always *Not yet* with perfect reasons 72/100, reading properly 100/100.
+
+   The closing screen shows each student their own verdict spread against the key, and names the bias if one verdict is over-used by three or more: challenging everything is the mirror image of accepting everything, and A.D1 asks for a judgement rather than its withholding.
 5. **The verdict:** investigate two websites and write a comparison, analysis and evaluation through five guided steps, with the P1/M1/D1 coach. Export everything as a UTF-8 text file. 100 completion XP for filled fields and self-review, not for writing quality.
 
 500 maximum agency XP. Navigation is open to support differentiation; each decision can only score once. A fresh game resets all saved work and reshuffles order. There is no shared leaderboard or server-side scoring.
@@ -82,13 +86,19 @@ The game explicitly challenges assumptions about gender, age, rural connectivity
 - `styles.css`: responsive layout, keyboard focus and reduced-motion handling.
 - `data.js`: editable clues, briefs, options, claim answers, writing prompts and source links.
 - `criteria.js`: design principles, performance factors, client requirements, the P1/M1/D1 move detectors and the worked ladder.
-- `app.js`: rendering, scoring, local saving, validation and text export.
-- `.github/workflows/pages.yml`: GitHub Pages deployment workflow.
+- `app.js`: rendering, scoring, local saving, validation and text export. If `data.js` or `criteria.js` fails to load, it replaces the game with a message naming the missing file instead of throwing.
+- `.github/workflows/pages.yml`: GitHub Pages deployment workflow. Copies `*.js` and verifies that every file `index.html` references was published.
 - `.nojekyll`: static hosting marker.
 
 ## Saving and privacy
 
 Progress is stored under `segment-studio-v1` in localStorage. No names are required and no student answers are transmitted by the application. GitHub Pages serves the files; external links open the external provider. Local storage may be restricted, cleared or shared between users. Export before leaving a shared computer, then reset. If storage is unavailable, the page reports this and the in-memory game remains playable. Downloads require the browser's usual permission/settings.
+
+## Deploying
+
+The workflow used to copy a hard-coded file list into `_site`, so adding a new script silently published a site that 404ed on it. It now copies `*.js` and then fails the build if `index.html` references anything that is not in `_site`. If you add a non-JS asset — an image, a font, a subfolder — add it to the `cp` line, and the verification step will tell you if you forget.
+
+Assets are cache-busted with `?v=6`. Bump that in `index.html` whenever you edit a `.js` or `.css` file, so students on an old copy get the new build without a hard refresh.
 
 ## GitHub Pages
 
@@ -109,8 +119,8 @@ No server, paid hosting service, API key or dependency installation is required.
 - Design uses a three-stage flow, explicit credit availability, an editable four-part connection, highlighted drag targets, tap/click alternatives and concise explanation cards.
 - Existing local sessions, scores, pitches and written drafts are migrated without starting over; no save format change was needed.
 - Typography, spacing, focus states, touch controls, contrast and status messages share consistent styles. Motion is limited to brief press feedback and answer feedback.
-- The Diagnose round drills A2 performance factors directly, and the Challenge round now questions SEO and creativity, closing the coverage gap in the previous version. A.D1 gained a seventh move requiring creativity or performance to be carried into the judgement rather than left in the analysis.
-- Saves migrate from version 1 to version 2 automatically: an old session resumes on the right round, keeps every answer and draft, and has the clinic added to it.
-- Tested with a jsdom harness (41 assertions) across all five rounds, version 1 save migration, the coach's live updates, custom site selection, save/reload migration and export. Browser visual and gesture testing was not performed in this update.
+- The Diagnose round drills A2 performance factors directly, and the Moderate round replaces Challenge, which had a surface-cue answer key that made scepticism a winning strategy without reading. SEO and creativity are now among the moderated extracts. A.D1 gained a seventh move requiring creativity or performance to be carried into the judgement rather than left in the analysis.
+- Saves migrate to version 3 automatically. A version 1 or 2 session resumes on the right round and keeps every clue, brief, diagnosis and draft; only the rebuilt fourth round restarts, and the app says so on load.
+- Tested with a jsdom harness (51 assertions) across all five rounds, version 1 and version 2 save migration, missing-file boot handling, answer-key gameability, the coach's live updates, custom site selection, save/reload migration and export. Browser visual and gesture testing was not performed in this update.
 
 Design direction informed by the supplied Emil Design Engineering, Apple Design and Animate skill documents.
