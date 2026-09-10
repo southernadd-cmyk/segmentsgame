@@ -36,11 +36,11 @@ const SOURCES = [
  {name:'Amazon UK — Customer reviews',url:'https://www.aboutamazon.co.uk/news/retail/update-on-customer-reviews',note:'Amazon explains the role of reviews in informed purchase decisions. This is a historical feature explanation, not current audience statistics.'}
 ];
 const BRANDS = [
- {name:'Roblox',url:'https://www.roblox.com/',source:4,purpose:'Discover and participate in experiences; express an identity.',feature:'Self-expression and experience discovery',principle:'Visual hierarchy, navigation and customisation'},
- {name:'Spotify',url:'https://open.spotify.com/',source:1,purpose:'Discover and listen to audio; retain listeners.',feature:'Playlists informed by listening habits',principle:'Personalisation, consistency and navigation'},
- {name:'Amazon',url:'https://www.amazon.co.uk/',source:5,purpose:'Find, compare and buy products.',feature:'Customer reviews supporting purchase decisions',principle:'Information hierarchy, trust and usability'},
- {name:'Google',url:'https://www.google.com/',source:3,purpose:'Find relevant information and services.',feature:'Location can influence search results',principle:'Clarity, whitespace and relevance'},
- {name:'YouTube',url:'https://www.youtube.com/',source:2,purpose:'Find and watch video; support creators and returning viewers.',feature:'Recommendations can use watch history',principle:'Discovery, visual hierarchy and user control'}
+ {name:'Roblox',kind:'Games and community',url:'https://www.roblox.com/',source:4,purpose:'Discover and participate in experiences; express an identity.',feature:'Self-expression and experience discovery',principle:'Visual hierarchy, navigation and customisation'},
+ {name:'Spotify',kind:'Media and streaming',url:'https://open.spotify.com/',source:1,purpose:'Discover and listen to audio; retain listeners.',feature:'Playlists informed by listening habits',principle:'Personalisation, consistency and navigation'},
+ {name:'Amazon',kind:'Product and service (commerce)',url:'https://www.amazon.co.uk/',source:5,purpose:'Find, compare and buy products.',feature:'Customer reviews supporting purchase decisions',principle:'Information hierarchy, trust and usability'},
+ {name:'Google',kind:'Search and information',url:'https://www.google.com/',source:3,purpose:'Find relevant information and services.',feature:'Location can influence search results',principle:'Clarity, whitespace and relevance'},
+ {name:'YouTube',kind:'Media and streaming',url:'https://www.youtube.com/',source:2,purpose:'Find and watch video; support creators and returning viewers.',feature:'Recommendations can use watch history',principle:'Discovery, visual hierarchy and user control'}
 ];
 // All design briefs and their scoring are authored classroom simulations, not brand analytics.
 const MISSIONS = [
@@ -85,7 +85,61 @@ const MISSIONS = [
  ['Topic filters for search',2,3,'Discovery','Offer a direct route to a technical topic.','Useful when the learner knows what they need.','A beginner may not yet know the correct technical term.']
  ]}
 ];
+// Performance clinic (unit content A2). Fictional symptoms on teaching pages;
+// each case names one dominant factor, and what evidence would confirm it.
+const DIAGNOSE = [
+ {symptom:'A course page takes about nine seconds the first time you open it. Open it again straight away and it is almost instant. Nothing on the page has changed.',
+  where:'Client-side',
+  options:['Cache memory \u2014 the browser reused files it had already stored','Number of hits \u2014 the server was busier the first time','File types and sizes \u2014 the images shrank between visits'],
+  correct:0,
+  why:'A first visit downloads everything; a repeat visit reuses cached files. This is why a single timing is meaningless unless you say whether it was a first or a repeat visit.',
+  confirm:'Hard-refresh to clear the cache, then time it again. If the slow number comes back, it was the cache.'},
+ {symptom:'On the college wi-fi the shop page is quick. On your phone using mobile data on the bus, the same page takes far longer, and the images arrive last.',
+  where:'Client-side',
+  options:['Processor speed \u2014 the phone cannot render the page','Download speed \u2014 the connection limits how fast files can arrive','Browser compliance \u2014 the phone browser does not support the images'],
+  correct:1,
+  why:'The site sent the same files both times. What changed was the connection, so the limit is download speed at the visitor\u2019s end. This is the factor most likely to affect a real audience the designer never tests on.',
+  confirm:'Throttle the connection in the browser\u2019s network tab and repeat the same task on the same device.'},
+ {symptom:'The page itself appears immediately. But when you tick a filter, the results take about two seconds to update, every single time.',
+  where:'Client-side',
+  options:['Bandwidth availability at the host has run out','Cache memory is full so nothing can be stored','Interactivity \u2014 the script has to do work in the browser after each click'],
+  correct:2,
+  why:'Page loading and feature responding are different failures. Here the page has already arrived, so the delay is the interactive script running in the browser each time you act.',
+  confirm:'Time the page load and the filter response separately. Report them as two numbers, not one.'},
+ {symptom:'The network tab shows one hero image at 2.4 MB. Every other file on the page is under 40 KB, and the total is 2.7 MB.',
+  where:'Server-side',
+  options:['File types and sizes \u2014 one unoptimised image is most of the page weight','Processor speed \u2014 the device cannot decode the image','Number of hits \u2014 too many visitors requested the image'],
+  correct:0,
+  why:'One file is carrying almost all the weight. Compressing it, resizing it or serving a modern format would cut the page by most of its size without touching the design.',
+  confirm:'Read the file size and format straight off the network tab. This is the most concrete performance evidence you can collect from outside a site.'},
+ {symptom:'On results day the site is slow for everybody from about 9am. At 7am the same morning it was fine, from the same device and connection.',
+  where:'Server-side',
+  options:['Download speed \u2014 everyone\u2019s broadband got worse at 9am','Number of hits \u2014 traffic at a peak time is more than the server can answer quickly','Cache memory \u2014 the browser cleared itself overnight'],
+  correct:1,
+  why:'Same device, same connection, same files, different time. What changed was how many people were asking at once. Peak-time slowness is evidence about server load, not about the design.',
+  confirm:'Repeat the identical task at a quiet time and a busy time and record both. You cannot see the server\u2019s own figures from outside.'},
+ {symptom:'The booking form works in Chrome. In Safari the date picker does not open at all, so the visitor cannot finish the booking.',
+  where:'Client-side',
+  options:['Browser compliance \u2014 the element is not supported the same way in both browsers','Interactivity \u2014 the form has too many interactive fields','File types and sizes \u2014 the form script is too large to load'],
+  correct:0,
+  why:'A feature that works in one browser and fails in another is a compliance problem, not a speed problem. It also means a test in one browser is not a test of the site.',
+  confirm:'Open the same page in two browsers and record the name and version of each. Note exactly what could not be completed.'},
+ {symptom:'You view the page source. The product names and prices are already there in the HTML that arrived, before any script has run.',
+  where:'Where the work happens',
+  options:['A client-side script built the list in your browser','A server-side script built the page before it was sent','The browser cached the prices from a previous visit'],
+  correct:1,
+  why:'If the content is present in the HTML on arrival, the server did that work. Client-side scripts fill content in after the page loads, which you would see as the page changing.',
+  confirm:'Compare view-source with what you see on screen. Content only in the rendered page, not the source, was added client-side.'},
+ {symptom:'A background animation runs smoothly on a new laptop. On a three-year-old phone the same animation stutters and scrolling feels sticky, even on fast wi-fi.',
+  where:'Client-side',
+  options:['Bandwidth availability \u2014 the host is throttling the phone','Processor speed and memory \u2014 the device cannot render it fast enough','Number of hits \u2014 the phone is queuing behind other visitors'],
+  correct:1,
+  why:'The connection was fast, so the files arrived. The device still has to render every frame. A fast laptop is not evidence about the phone your audience actually uses.',
+  confirm:'Run the same page on a newer and an older device on the same connection, and describe what stutters.'}
+];
 const CLAIMS = [
+ {brand:'Greenway College (fictional)',claim:'\u201cThe redesign looks far better than the old site, so it will move up the search results.\u201d',answers:['Approve: a better-looking site always ranks higher.','Challenge: ranking depends on indexing, page titles, meta description, keywords and updates \u2014 not on how the page looks.','Approve if the colours match the logo.'],correct:1,why:'Search engine optimisation is its own part of the design: what the page is called, what it says it is about, whether it can be crawled, and how often it changes. Appearance is not a ranking signal, and a redesign can lose rankings if titles and links change.'},
+ {brand:'Roblox + Google',claim:'\u201cThis layout is unconventional, so it is creative, so it is the better design.\u201d',answers:['Challenge: creativity is judged by whether the unusual choice still lets the audience complete the purpose.','Approve: unusual always means creative and creative always means better.','Approve if the competitor\u2019s layout is conventional.'],correct:0,why:'The spec puts creativity and innovation alongside usability, not above it. An unconventional layout can be the strongest choice or an expensive one \u2014 what settles it is whether the visitor can still do what the site exists for.'},
  {brand:'Roblox',claim:'“Teenagers use Roblox, so every teenager will prefer a busy, neon website.”',answers:['Approve: age predicts visual taste.','Challenge: test preferences and usability with the intended segment.','Approve if a competitor uses neon.'],correct:1,why:'Demographics do not prove psychographic preferences. Contrast, readable text and task success require evidence, whatever the colour palette.'},
  {brand:'Spotify + YouTube',claim:'“Both recommend content, so their website designs meet exactly the same needs.”',answers:['Agree: recommendations make the sites identical.','Compare only their logos.','Compare the audio and video tasks, navigation and user control for a defined audience.'],correct:2,why:'A shared feature is a comparison starting point. P1 preparation needs similarities and differences linked to audience and purpose.'},
  {brand:'Google',claim:'“The homepage looks simple, which proves it is the fastest website.”',answers:['Measure loading and task performance under comparable conditions.','Accept it: less visible content always means faster code.','Count the number of colours instead.'],correct:0,why:'Appearance cannot prove measured speed. Network, device, scripts, caching and content all matter. Separate a performance prediction from a test result.'},
@@ -96,9 +150,9 @@ const CLAIMS = [
  {brand:'Amazon + Roblox',claim:'“Amazon is best because I like it. No further comparison is needed.”',answers:['Agree: evaluation is just personal preference.','Replace the opinion with a star rating.','Judge each site against its purpose, audience and client goals; weigh strengths and limitations.'],correct:2,why:'Different purposes prevent a simple universal winner. A justified conclusion should use observed design evidence, consequences and trade-offs.'}
 ];
 const WRITING = [
- ['compare','P1 practice · Compare','Compare the two websites using at least two design principles. Explain a similarity and a difference, linking both to the defined audience and each site’s purpose.','Both sites use… On site A… whereas site B… This suits the audience because…'],
- ['analyse','M1 practice · Analyse','For each site, explain how a specific design choice affects the user’s task and a client goal. Address creativity and performance with evidence, distinguishing predictions from measurements.','The design choice… helps/hinders… because… This could support the client’s goal of… The evidence is… A creative aspect is… Performance evidence or a test needed is…'],
- ['evaluate','D1 practice · Evaluate','Weigh strengths against limitations for each site. Reach a justified judgement about how well each meets its client requirements and audience needs. Prioritise an improvement and explain how you would test it.','For this audience and purpose… is effective because… However… On balance… The most valuable improvement would be… I would test it by…']
+ ['compare','A.P1 \u00b7 Compare','Compare the principles of website design used in both sites. Name who each site is aimed at and what it is intended to do, then explain one similarity and one difference in how they apply at least two design principles.','Both sites are aimed at\u2026 so both\u2026 The difference is in\u2026: site A\u2026 whereas site B\u2026 For this audience and purpose that suits\u2026 because\u2026'],
+ ['analyse','A.M1 \u00b7 Analyse','For each site, explain how a design principle is used to produce a creative, high-performance site that meets a client requirement. Give the chain of reasoning: the choice, what it does to the visitor\u2019s task, what it does for the client. Name a performance factor and say whether you measured it or would need to test it.','The choice to\u2026 means the visitor\u2026 because\u2026 This serves the client requirement that the site be\u2026 Creatively it\u2026 On performance, [factor] \u2014 I observed\u2026 on [device/browser/connection]. The cost of this choice is\u2026'],
+ ['evaluate','A.D1 \u00b7 Evaluate','Identify a requirement of each site and why it matters to the visitor. Weigh strengths against limitations, and discuss the impact on the organisation \u2014 the positive and the negative outcomes. Reach a justified judgement, then prioritise one improvement and say how you would check it worked.','The requirement that\u2026 matters to the visitor because\u2026 and to the organisation because\u2026 It works well where\u2026 but\u2026 Set against that\u2026 On balance I judge\u2026 because\u2026 The improvement I would prioritise is\u2026 and I would check it by\u2026']
 ];
 
 // Valid audience-to-feature links for the bounded matching activity. Accessibility

@@ -6,9 +6,10 @@
   <meta name="theme-color" content="#131625">
   <meta name="description" content="Segment Studio: an interactive audience and website design game for BTEC IT Unit 6.">
   <title>Segment Studio · Audience to interface</title>
-  <link rel="stylesheet" href="styles.css?v=3">
-  <script src="data.js?v=3" defer></script>
-  <script src="app.js?v=3" defer></script>
+  <link rel="stylesheet" href="styles.css?v=5">
+  <script src="data.js?v=5" defer></script>
+  <script src="criteria.js?v=5" defer></script>
+  <script src="app.js?v=5" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to game</a>
@@ -21,7 +22,8 @@
       <div class="eyebrow">YOUR DESIGN AGENCY</div><h1>Audience to<br><em>interface.</em></h1>
       <p class="intro">Four rounds. Real websites. Better design decisions.</p>
       <nav aria-label="Game rounds" id="round-nav"></nav>
-      <div class="scorebox"><div><span class="eyebrow">AGENCY XP</span><strong id="xp">0<span> / 400</span></strong></div><div class="rank" id="rank">RECRUIT</div><progress id="progress" max="400" value="0" aria-label="Agency experience"></progress><p id="round-count">0 of 4 rounds complete</p><p class="score-caption">Game XP, not a BTEC grade.</p></div>
+      <div class="scorebox"><div><span class="eyebrow">AGENCY XP</span><strong id="xp">0<span> / 500</span></strong></div><div class="rank" id="rank">RECRUIT</div><progress id="progress" max="500" value="0" aria-label="Agency experience"></progress><p id="round-count">0 of 4 rounds complete</p><p class="score-caption">Game XP, not a BTEC grade.</p></div>
+      <div id="criteria-box" class="criteria-box"></div>
       <button id="export" class="quiet wide">↓ Download case file</button>
       <button id="reset" class="textbutton">Start a fresh game</button>
     </aside>
