@@ -100,3 +100,13 @@ const WRITING = [
  ['analyse','M1 practice · Analyse','For each site, explain how a specific design choice affects the user’s task and a client goal. Address creativity and performance with evidence, distinguishing predictions from measurements.','The design choice… helps/hinders… because… This could support the client’s goal of… The evidence is… A creative aspect is… Performance evidence or a test needed is…'],
  ['evaluate','D1 practice · Evaluate','Weigh strengths against limitations for each site. Reach a justified judgement about how well each meets its client requirements and audience needs. Prioritise an improvement and explain how you would test it.','For this audience and purpose… is effective because… However… On balance… The most valuable improvement would be… I would test it by…']
 ];
+
+// Valid audience-to-feature links for the bounded matching activity. Accessibility
+// can benefit any segment; these links do not infer a disability from a profile.
+const CONNECTIONS = [
+ {links:{0:[3],1:[1],2:[0,1,2,3],5:[3]},outcomes:['Help visitors discover suitable experiences and understand avatar choices.','Keep visitors watching a trailer before they can make a choice.','Increase the number of products added to a shopping basket.']},
+ {links:{0:[3],1:[1],2:[0,1,2,3],5:[1]},outcomes:['Help returning listeners reach familiar audio and discover something new.','Make every listener use the same playlist regardless of taste.','Help shoppers compare delivery charges before checkout.']},
+ {links:{0:[0,2,3],1:[1,3],2:[0,1,2,3],5:[3]},outcomes:['Help shoppers compare products and make an informed purchase.','Keep product costs hidden until shoppers have entered their details.','Help players choose an avatar for a new experience.']},
+ {links:{0:[2],1:[1,3],2:[0,1,2,3],5:[2,3]},outcomes:['Help visitors find and assess a relevant local service quickly.','Make all visitors search within London, wherever they are.','Increase the time spent browsing music playlists.']},
+ {links:{0:[3],1:[0,1,2,3],2:[1,3],5:[1]},outcomes:['Help learners find and understand a suitable tutorial with control over playback.','Keep learners watching automatically even when their task is finished.','Help shoppers compare product delivery options.']}
+];

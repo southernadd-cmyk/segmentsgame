@@ -11,7 +11,7 @@ Open `index.html` locally, or serve the repository root with any static web serv
 ## Four rounds
 
 1. **Decode:** 20 audience clues covering age, gender, income, education, occupation; values, beliefs, lifestyle, personality, interests; country, city, climate, urban/rural location; buying habits, loyalty, usage and benefits sought. Correct first answers earn 5 XP each.
-2. **Design:** five fictional briefs using Roblox, Spotify, Amazon, Google and YouTube. Select features within six credits and write a short causal explanation. Up to 24 XP per brief, based on authored fit points. The top three options each cost two credits and earn four fit points. Written pitches are saved but not graded.
+2. **Design:** five fictional briefs using Roblox, Spotify, Amazon, Google and YouTube. Select features within six credits, then drag or click cards to build an audience → selected feature → benefit → client outcome connection. All four slots must be filled with a supported connection before the pitch can be submitted. Incorrect links receive targeted feedback and can be retried. Up to 24 XP per brief, based on authored fit points. The top three options each cost two credits and earn four fit points. Completed connections are saved and included in the case-file export. Matching checks use authored answer rules, not BTEC grading. Existing completed pitches and scores are preserved.
 3. **Challenge:** eight claims exploring stereotypes, evidence, comparison, causality, performance and evaluation. Correct first answers earn 10 XP each.
 4. **The verdict:** investigate two different real websites and write a comparison, analysis and evaluation. Export all answers, feedback, notes and references as a UTF-8 text file. The 100 completion XP is for filled fields and self-review, not writing quality.
 
@@ -40,7 +40,7 @@ Based on Pearson BTEC National Level 3 Information Technology (2016), Issue 6, U
 | A.M1 | Analyse how design choices support creativity, performance and client requirements, using causal explanations. |
 | A.D1 | Weigh effectiveness and limitations, reach justified judgements and propose prioritised improvements. |
 
-Segmentation supports audience analysis. The game is formative preparation, not a complete Unit 6 assessment or an automatic grading tool. Teachers must assess depth, validity, independence and coverage against the actual assignment brief. Minimum character counts only check that entries are present. Students are prompted to distinguish measurements from proposed tests.
+Segmentation supports audience analysis. The game is formative preparation, not a complete Unit 6 assessment or an automatic grading tool. Teachers must assess depth, validity, independence and coverage against the actual assignment brief. Minimum character counts in the final verdict only check that entries are present. The Design round uses a validated card builder instead of free text. Students are prompted to distinguish measurements from proposed tests.
 
 Specification: https://qualifications.pearson.com/content/dam/pdf/BTEC-Nationals/Information-Technology/2016/specification-and-sample-assessments/specification-pearson-btec-level-3-national-extended-certificate-in-information-technology.pdf
 
