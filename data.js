@@ -110,3 +110,12 @@ const CONNECTIONS = [
  {links:{0:[2],1:[1,3],2:[0,1,2,3],5:[2,3]},outcomes:['Help visitors find and assess a relevant local service quickly.','Make all visitors search within London, wherever they are.','Increase the time spent browsing music playlists.']},
  {links:{0:[3],1:[0,1,2,3],2:[1,3],5:[1]},outcomes:['Help learners find and understand a suitable tutorial with control over playback.','Keep learners watching automatically even when their task is finished.','Help shoppers compare product delivery options.']}
 ];
+
+// Concise cards for the explanation builder. Indices match each brief's options.
+const BENEFITS = [
+ ['Find experiences through clear categories.','See how an avatar choice expresses their style.','Read and operate the main choices more easily.','Watch an atmosphere-setting trailer before making choices.','See colours chosen from their age alone.','Recover from an unsuccessful search.'],
+ ['Reach a saved playlist in fewer steps.','Discover audio with more control over suggestions.','Use labelled playback controls on a small screen.','Watch a moving background while listening.','Receive music selected from gender alone.','Browse a music genre they choose.'],
+ ['Compare the full cost and delivery before committing.','Assess whether a product is suitable using reviews and details.','Read and compare specifications on a narrow screen.','Watch a product video before seeing the price.','Enter their details before finding out all the fees.','Return to a shortlist for a considered comparison.'],
+ ['Correct the area used for local results.','Scan result details before opening a page.','Reach useful results without unnecessary page content.','Watch a brand film before finding a service.','See London results regardless of their actual city.','Refine local results by distance and opening time.'],
+ ['Judge a tutorial’s scope and jump to a specific step.','Read the content when audio is unavailable or unclear.','Control what plays next and how history is used.','Keep watching automatically after their task is finished.','See topics selected from age alone.','Find a tutorial on a topic they already know.']
+];

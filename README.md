@@ -11,9 +11,9 @@ Open `index.html` locally, or serve the repository root with any static web serv
 ## Four rounds
 
 1. **Decode:** 20 audience clues covering age, gender, income, education, occupation; values, beliefs, lifestyle, personality, interests; country, city, climate, urban/rural location; buying habits, loyalty, usage and benefits sought. Correct first answers earn 5 XP each.
-2. **Design:** five fictional briefs using Roblox, Spotify, Amazon, Google and YouTube. Select features within six credits, then drag or click cards to build an audience → selected feature → benefit → client outcome connection. All four slots must be filled with a supported connection before the pitch can be submitted. Incorrect links receive targeted feedback and can be retried. Up to 24 XP per brief, based on authored fit points. The top three options each cost two credits and earn four fit points. Completed connections are saved and included in the case-file export. Matching checks use authored answer rules, not BTEC grading. Existing completed pitches and scores are preserved.
+2. **Design:** five fictional briefs using Roblox, Spotify, Amazon, Google and YouTube. Select features within six credits, then drag or click cards to build an audience → selected feature → benefit → client outcome connection. The brief now has three separate stages: choose features, connect ideas, and review the pitch. Slots and cards sit alongside each other on desktop. All four slots must be filled with a supported connection before the pitch can be submitted. Incorrect links receive targeted feedback and can be retried. Up to 24 XP per brief, based on authored fit points. The top three options each cost two credits and earn four fit points. Completed connections are saved and included in the case-file export. Matching checks use authored answer rules, not BTEC grading. Existing completed pitches and scores are preserved.
 3. **Challenge:** eight claims exploring stereotypes, evidence, comparison, causality, performance and evaluation. Correct first answers earn 10 XP each.
-4. **The verdict:** investigate two different real websites and write a comparison, analysis and evaluation. Export all answers, feedback, notes and references as a UTF-8 text file. The 100 completion XP is for filled fields and self-review, not writing quality.
+4. **The verdict:** investigate two different real websites and write a comparison, analysis and evaluation through five guided steps: Investigate, Compare, Analyse, Evaluate, and Review & export. Export all answers, feedback, notes and references as a UTF-8 text file. The 100 completion XP is for filled fields and self-review, not writing quality.
 
 400 maximum agency XP. Navigation is open to support differentiation; each decision can only score once. A fresh game resets all saved work and shuffles clue order. There is no shared leaderboard or server-side scoring.
 
@@ -68,3 +68,16 @@ Progress is stored under `segment-studio-v1` in localStorage. No names are requi
 The workflow publishes the static root using GitHub Actions. In repository **Settings → Pages**, the source must be **GitHub Actions**. The workflow's configure step requests Pages enablement; if GitHub denies that step, an owner must enable Pages in Settings, then rerun the workflow. Some GitHub App connections cannot change repository Pages settings.
 
 No server, paid hosting service, API key or dependency installation is required. The project uses relative asset paths so it works at `/segmentsgame/`.
+
+## Experience update
+
+- Each round shows progress independently of XP. Completion summaries focus attention on misconceptions and keep full explanations available.
+- Decode and Challenge support number-key answers, with instant keyboard transitions.
+- Design uses a three-stage flow, explicit credit availability, an editable four-part connection, highlighted drag targets, tap/click alternatives and concise explanation cards. Removing a linked feature also clears the now-stale feature and benefit cards.
+- The verdict presents one investigation site or reasoning task at a time. A source-note drawer keeps evidence accessible beside the writing task. Navigation remains open for teacher-led differentiation; the guided Next action checks draft completion.
+- Each investigation slot remembers notes separately for each selected brand. Switching back restores those notes. Changing evidence or reasoning resets final review checks and completion XP until reviewed again.
+- Existing local sessions, scores, pitches and written drafts are migrated without starting over.
+- Typography, spacing, focus states, touch controls, contrast and status messages share consistent styles. Motion is limited to brief press feedback and answer feedback; keyboard and reduced-motion interactions stay immediate. No animation dependency was added.
+- JavaScript checks cover the full 400-XP journey, budget/connection validation, duplicate-submit protection, revised step navigation, saved-state migration, website draft restoration, review invalidation and exports. Browser visual/gesture testing was not performed in this update.
+
+Design direction informed by the supplied Emil Design Engineering, Apple Design and Animate skill documents.
